@@ -62,11 +62,17 @@ class App extends Component {
             //        'Content-Type': 'application/pdf'
             //   }
 
-            axios.post('https://192.168.0.4:8443/api/fileupload', fileAsBinaryString).then(res => {
+            // axios.post('https://192.168.0.4:8443/api/fileupload', fileAsBinaryString).then(res => {
+            //   console.log(res);
+            //   console.log(res.data);
+            // })
+
+            const formData = new FormData();
+            formData.append('myFile',file);
+            axios.post('192.168.0.4:8080/upload', formData).then(res => {
               console.log(res);
               console.log(res.data);
             })
-
         };
         reader.onabort = () => console.log('file reading was aborted');
         reader.onerror = () => console.log('file reading has failed');
